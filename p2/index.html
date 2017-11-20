@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax y xml</title>
+    <script type="text/javascript">
+        
+        var cont;
+        var data;
+        
+        function onLoad(){
+            cont = document.getElementById("cont");
+            data = new Array();
+        }
+        
+        function test(){
+            var request = new requestAjax();
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
+                    if(request.responseXML != null){
+                        data[0] = request.responseXML.getElementsByTagName("nombre").item(0);
+                        data[1] = request.responseXML.getElementsByTagName("edad").item(0);
+                        data[2] = request.responseXML.getElementsByTagName("nacionalidad").item(0);
+                        cont.innerHTML += "Nombre: "+data[0].firstChild.nodeValue + "<br/>"
+                        + "Edad: " +data[1].firstChild.nodeValue + "<br/>"
+                        + "Nacionalidad: " + data[2].firstChild.nodeValue + "<br/>";
+                    }
+                }
+            }
+            request.open("GET", "http://localhost/practicas/p9_xml_php/p2/data.xml", true);
+            request.send();
+        }
+        
+        function requestAjax(){
+            try{
+                var request = new XMLHttpRequest();
+            }catch(error1){
+                try{
+                    var request = ActiveXObject("Msxm12.XMLHTTP");
+                }catch(error2){
+                    try{
+                        var request = ActiveXObject("Microsoft.XMLHTTP");
+                    }catch(error3){
+                        var request = false;
+                    }
+                }
+            }
+            return request;
+        }
+        
+    </script>
+</head>
+<body onload="onLoad()">
+    <p id="cont"></p>
+    <input type="button" value="Hacer un request a xml!" onclick="test();">
+</body>
+</html>
