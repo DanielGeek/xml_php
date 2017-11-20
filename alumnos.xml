@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<alumnos>
+    <alumno>
+        <nombre>
+            Mario
+        </nombre>
+        <nota>
+            8.0
+        </nota>
+    </alumno>
+    <alumno>
+        <nombre>
+            Raúl
+        </nombre>
+        <nota>
+            6.2
+        </nota>
+    </alumno>
+    <alumno>
+        <nombre>
+            María
+        </nombre>
+        <nota>
+            7.7
+        </nota>
+    </alumno>
+</alumnos>
